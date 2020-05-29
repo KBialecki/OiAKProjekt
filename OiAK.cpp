@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <iomanip>
 #include <cstdlib>
 #include <ctime>
@@ -16,49 +16,52 @@ int** free_real_matrix(int** v, int size);
 int main()
 {
     // randomizacja
+
     srand((unsigned)time(0));
     int rangeStart = 1, rangeEnd = 100;
 
     // zmienne macierzowe
-    int** Matrix1, ** Matrix2, ** ResultMatrix, size1, size2, size3;
+
+    int** Matrix1, ** Matrix2, ** ResultMatrix, size1;
+
     // reszta
-    int i, j, k, s, randomNumber;
+
+    int i, j;
 
     // odczytujemy wymiary macierzy z konsoli (zrobi się ładniej)
 
     cout << "Podaj wymiar macierzy kwadratowej: ";
     cin >> size1;
-    size2 = size1; size3 = size1;
 
     // tworzymy macierze o odpowiednich rozmiarach (M1 to size1 x size2, M2 to size2 x size3, Result to size1 x size3)
 
     Matrix1 = new int* [size1];
-    Matrix2 = new int* [size2];
+    Matrix2 = new int* [size1];
     ResultMatrix = new int* [size1];
 
     for (i = 0; i < size1; i++)
     {
-        Matrix1[i] = new int[size2];
-        ResultMatrix[i] = new int[size3];
+        Matrix1[i] = new int[size1];
+        ResultMatrix[i] = new int[size1];
     }
 
-    for (i = 0; i < size2; i++) Matrix2[i] = new int[size3];
+    for (i = 0; i < size1; i++) Matrix2[i] = new int[size1];
 
     // generujemy dane dla macierzy pierwszej
 
     for (i = 0; i < size1; i++)
-        for (j = 0; j < size2; j++) Matrix1[i][j] = (rand() % rangeEnd) + rangeStart;
+        for (j = 0; j < size1; j++) Matrix1[i][j] = (rand() % rangeEnd) + rangeStart;
 
     // generujemy dane dla macierzy drugiej
 
-    for (i = 0; i < size2; i++)
-        for (j = 0; j < size3; j++) Matrix2[i][j] = (rand() % rangeEnd) + rangeStart;
+    for (i = 0; i < size1; i++)
+        for (j = 0; j < size1; j++) Matrix2[i][j] = (rand() % rangeEnd) + rangeStart;
 
     cout << endl;
 
     // mnożymy macierz M1 przez M2 i wynik umieszczamy w ResultMatrix (da się czyściej na pewno)
 
-    ResultMatrix = naiwne(Matrix1, Matrix2, ResultMatrix, size1, size2, size3);
+    ResultMatrix = naiwne(Matrix1, Matrix2, ResultMatrix, size1, size1, size1);
 
     cout << "Koniec algorytmu naiwnego - nacisnij enter zeby zwolnic pamiec";
     cin.clear(); cin.ignore(INT_MAX, '\n');
@@ -72,7 +75,7 @@ int main()
         delete[] ResultMatrix[i];
     }
 
-    for (i = 0; i < size2; i++) delete[] Matrix2[i];
+    for (i = 0; i < size1; i++) delete[] Matrix2[i];
     delete[] Matrix1;
     delete[] Matrix2;
     delete[] ResultMatrix;
@@ -81,26 +84,26 @@ int main()
     cin.clear(); cin.ignore(INT_MAX, '\n');
 
     Matrix1 = new int* [size1];
-    Matrix2 = new int* [size2];
+    Matrix2 = new int* [size1];
     ResultMatrix = new int* [size1];
 
     for (i = 0; i < size1; i++)
     {
-        Matrix1[i] = new int[size2];
-        ResultMatrix[i] = new int[size3];
+        Matrix1[i] = new int[size1];
+        ResultMatrix[i] = new int[size1];
     }
 
-    for (i = 0; i < size2; i++) Matrix2[i] = new int[size3];
+    for (i = 0; i < size1; i++) Matrix2[i] = new int[size1];
 
     // generujemy dane dla macierzy pierwszej
 
     for (i = 0; i < size1; i++)
-        for (j = 0; j < size2; j++) Matrix1[i][j] = (rand() % rangeEnd) + rangeStart;
+        for (j = 0; j < size1; j++) Matrix1[i][j] = (rand() % rangeEnd) + rangeStart;
 
     // generujemy dane dla macierzy drugiej
 
-    for (i = 0; i < size2; i++)
-        for (j = 0; j < size3; j++) Matrix2[i][j] = (rand() % rangeEnd) + rangeStart;
+    for (i = 0; i < size1; i++)
+        for (j = 0; j < size1; j++) Matrix2[i][j] = (rand() % rangeEnd) + rangeStart;
 
     ResultMatrix = strassen(Matrix1, Matrix2, ResultMatrix, size1);
 
