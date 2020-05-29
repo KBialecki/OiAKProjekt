@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <cstdlib>
 #include <ctime>
+#include <armadillo>
 
 using namespace std;
 
@@ -117,7 +118,20 @@ int main()
     delete[] Matrix2;
     delete[] ResultMatrix;
 
-    cout << "\nPamiec wyczyszczona - nacisnij enter zeby zakonczyc.";
+    cout << "\nPamiec wyczyszczona - nacisnij enter zeby zaczac algorytm z biblioteki Armadillo";
+    cin.clear(); cin.ignore(INT_MAX, '\n');
+
+
+    // Initialize the random generator
+    arma::arma_rng::set_seed_random();
+    // Utworzenie macierzy wypełnionych liczbami całkowitymi
+    arma::mat MatrixA = arma::randi<arma::mat>(size1, size1, arma::distr_param(rangeStart, rangeEnd));
+    arma::mat MatrixB = arma::randi<arma::mat>(size1, size1, arma::distr_param(rangeStart, rangeEnd));
+
+    // mnozenie macierzy  
+    arma::mat MatrixC = MatrixA * MatrixB;
+
+    cout << "\nKoniec algorytmu - nacisnij enter zeby zakonczyc.";
     cin.clear(); cin.ignore(INT_MAX, '\n');
 
     return 0;
