@@ -1,11 +1,11 @@
-﻿#include <iostream>
+#include <iostream>
 #include <iomanip>
 #include <cstdlib>
 #include <ctime>
 
 using namespace std;
 
-int** naiwne(int** Matrix1, int **Matrix2, int **ResultMatrix, int size1, int size2, int size3) {
+int** naiwne(int** Matrix1, int** Matrix2, int** ResultMatrix, int size1, int size2, int size3) {
     int i, j, s, k;
     for (i = 0; i < size1; i++)
         for (j = 0; j < size3; j++)
@@ -24,7 +24,7 @@ int main()
     int rangeStart = 1, rangeEnd = 100;
 
     // zmienne macierzowe
-    int ** Matrix1, ** Matrix2, ** ResultMatrix, size1, size2, size3;
+    int** Matrix1, ** Matrix2, ** ResultMatrix, size1, size2, size3;
     // reszta
     int i, j, k, s, randomNumber;
 
@@ -62,19 +62,8 @@ int main()
 
     ResultMatrix = naiwne(Matrix1, Matrix2, ResultMatrix, size1, size2, size3);
 
-    // wyprowadzamy wynik mnożenia w C
-
-    cout << "ResultMatrix = Matrix1 x Matrix2:\n";
-
-    for (i = 0; i < size1; i++)
-    {
-        for (j = 0; j < size3; j++) cout << ResultMatrix[i][j] << " ";
-        cout << endl;
-    }
-
     /*
-        Tu gdzieś pomiary przed zwolnieniem pamięci.
-    
+        strassen
     */
 
 
@@ -90,10 +79,5 @@ int main()
     delete[] Matrix1;
     delete[] Matrix2;
     delete[] ResultMatrix;
-
-    /*
-        Tutaj kolejne algo i pomiary i zwalniamy, i tak tez z kolejnym
-    
-    */
     return 0;
 }
