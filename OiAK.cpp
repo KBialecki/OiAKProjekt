@@ -33,7 +33,7 @@ int main()
     cout << "Podaj wymiar macierzy kwadratowej: ";
     cin >> size1;
 
-    // tworzymy macierze o odpowiednich rozmiarach (M1 to size1 x size2, M2 to size2 x size3, Result to size1 x size3)
+    // tworzymy macierze size1 X size1
 
     Matrix1 = new int* [size1];
     Matrix2 = new int* [size1];
@@ -42,20 +42,17 @@ int main()
     for (i = 0; i < size1; i++)
     {
         Matrix1[i] = new int[size1];
+        Matrix2[i] = new int[size1];
         ResultMatrix[i] = new int[size1];
     }
 
-    for (i = 0; i < size1; i++) Matrix2[i] = new int[size1];
-
-    // generujemy dane dla macierzy pierwszej
+    // generujemy dane dla macierzy
 
     for (i = 0; i < size1; i++)
-        for (j = 0; j < size1; j++) Matrix1[i][j] = (rand() % rangeEnd) + rangeStart;
-
-    // generujemy dane dla macierzy drugiej
-
-    for (i = 0; i < size1; i++)
-        for (j = 0; j < size1; j++) Matrix2[i][j] = (rand() % rangeEnd) + rangeStart;
+        for (j = 0; j < size1; j++) {
+            Matrix1[i][j] = (rand() % rangeEnd) + rangeStart;
+            Matrix2[i][j] = (rand() % rangeEnd) + rangeStart;
+        }
 
     cout << endl;
 
@@ -90,20 +87,19 @@ int main()
     for (i = 0; i < size1; i++)
     {
         Matrix1[i] = new int[size1];
+        Matrix2[i] = new int[size1];
         ResultMatrix[i] = new int[size1];
     }
 
-    for (i = 0; i < size1; i++) Matrix2[i] = new int[size1];
-
-    // generujemy dane dla macierzy pierwszej
+    // generujemy dane dla macierzy
 
     for (i = 0; i < size1; i++)
-        for (j = 0; j < size1; j++) Matrix1[i][j] = (rand() % rangeEnd) + rangeStart;
+        for (j = 0; j < size1; j++) {
+            Matrix1[i][j] = (rand() % rangeEnd) + rangeStart;
+            Matrix2[i][j] = (rand() % rangeEnd) + rangeStart;
+        }
 
-    // generujemy dane dla macierzy drugiej
-
-    for (i = 0; i < size1; i++)
-        for (j = 0; j < size1; j++) Matrix2[i][j] = (rand() % rangeEnd) + rangeStart;
+    cout << endl;
 
     ResultMatrix = strassen(Matrix1, Matrix2, ResultMatrix, size1);
 
